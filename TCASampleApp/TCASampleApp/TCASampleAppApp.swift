@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import ComposableArchitecture
 
 @main
 struct TCASampleAppApp: App {
@@ -25,7 +26,11 @@ struct TCASampleAppApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppView(
+                store: Store(initialState: AppFeature.State()) {
+                    AppFeature()
+                }
+            )
         }
         .modelContainer(sharedModelContainer)
     }
