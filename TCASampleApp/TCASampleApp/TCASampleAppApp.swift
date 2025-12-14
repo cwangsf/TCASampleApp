@@ -10,10 +10,12 @@ import SwiftData
 import ComposableArchitecture
 
 @main
+@MainActor
 struct TCASampleAppApp: App {
-    var sharedModelContainer: ModelContainer = {
+    nonisolated var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            TodoItemModel.self,
+            CategoryModel.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -29,6 +31,8 @@ struct TCASampleAppApp: App {
             AppView(
                 store: Store(initialState: AppFeature.State()) {
                     AppFeature()
+                } withDependencies: {
+                    $0.todoRepository = TodoRepositoryClient.live(modelContext: sharedModelContainer.mainContext)
                 }
             )
         }

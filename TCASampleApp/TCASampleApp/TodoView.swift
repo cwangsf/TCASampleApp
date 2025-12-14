@@ -57,6 +57,12 @@ struct TodoView: View {
                 }
                 .navigationTitle("TCA Todo List")
             }
+            .onAppear {
+                viewStore.send(.onAppear)
+            }
+            .onDisappear {
+                viewStore.send(.onDisappear)
+            }
         }
     }
 }

@@ -9,11 +9,24 @@ import ComposableArchitecture
 
 @Reducer
 struct AppFeature {
-    struct State: Equatable { }
-    enum Action { }
+    struct State: Equatable {
+        var todoFeature = TodoFeature.State()
+    }
+
+    enum Action {
+        case todoFeature(TodoFeature.Action)
+    }
+
     var body: some ReducerOf<Self> {
+        Scope(state: \.todoFeature, action: \.todoFeature) {
+            TodoFeature()
+        }
+
         Reduce { state, action in
-            return .none
+            switch action {
+            case .todoFeature:
+                return .none
+            }
         }
     }
 }

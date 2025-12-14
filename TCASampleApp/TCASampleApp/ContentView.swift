@@ -12,11 +12,14 @@ import SwiftUI
 
 struct AppView: View {
     let store: StoreOf<AppFeature>
-    
+
     var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewStore in
-            Text("Hello TCA")
-        }
+        TodoView(
+            store: store.scope(
+                state: \.todoFeature,
+                action: \.todoFeature
+            )
+        )
     }
 }
 
