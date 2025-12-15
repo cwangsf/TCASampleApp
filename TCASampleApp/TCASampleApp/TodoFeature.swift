@@ -247,7 +247,7 @@ struct TodoFeature {
                     }
                 }
 
-            case let .deleteTodoResponse(.success):
+            case .deleteTodoResponse(.success):
                 return .none
 
             case let .deleteTodoResponse(.failure(error)):

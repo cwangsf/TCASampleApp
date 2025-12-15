@@ -1,5 +1,5 @@
 //
-//  TCASampleAppApp.swift
+//  TCASampleApp.swift
 //  TCASampleApp
 //
 //  Created by Cynthia Wang on 12/11/25.
@@ -11,7 +11,7 @@ import ComposableArchitecture
 
 @main
 @MainActor
-struct TCASampleAppApp: App {
+struct TCASampleApp: App {
     nonisolated var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             TodoItemModel.self,
